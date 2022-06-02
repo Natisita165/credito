@@ -2,12 +2,10 @@ package bo.edu.ucb.credito.Api;
 
 import bo.edu.ucb.credito.Bl.CreditoBl;
 import bo.edu.ucb.credito.Dto.Credito;
+import ch.qos.logback.core.net.server.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "http://localhost:8080/")
 @RestController
@@ -22,11 +20,17 @@ public class CreditoApi {
     }
 
     @RequestMapping(value = "/get", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Credito getCuotas(@RequestParam Integer Cliente_client_id){
-        return creditoBl.getCuotasR(Cliente_client_id);
+    public Credito getCuotas(@RequestParam Integer clienteClientId){
+        return creditoBl.getCuotasR(clienteClientId);
     }
     @RequestMapping(value = "/get/CuotaP", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Credito getCuotasP(@RequestParam Integer Cliente_client_id){
-        return creditoBl.getCuotasP(Cliente_client_id);
+    public Credito getCuotasP(@RequestParam Integer clienteClientId){
+        return creditoBl.getCuotasP(clienteClientId);
+    }
+
+
+    @RequestMapping(path = "/post",method = RequestMethod.POST)
+    public Credito crearNuevo(@RequestBody Credito credito){
+        return creditoBl.crearNuevo(credito);
     }
 }

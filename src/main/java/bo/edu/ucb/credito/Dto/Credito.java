@@ -1,5 +1,7 @@
 package bo.edu.ucb.credito.Dto;
 
+import java.sql.Date;
+
 public class Credito {
     private Integer credito_id;
     private String garante;
@@ -9,8 +11,9 @@ public class Credito {
     private Integer cuotas;
     private Integer cuotasR;
     private Integer cuotasP;
+    private Date fechaC;
     private String inmueble;
-    private Integer Cliente_client_id;
+    private Integer clienteClientId;
 
     public Credito(){
 
@@ -80,6 +83,14 @@ public class Credito {
         this.cuotasP = cuotasP;
     }
 
+    public Date getFechaC() {
+        return fechaC;
+    }
+
+    public void setFechaC(Date fechaC) {
+        this.fechaC = fechaC;
+    }
+
     public String getInmueble() {
         return inmueble;
     }
@@ -88,11 +99,11 @@ public class Credito {
         this.inmueble = inmueble;
     }
 
-    public Integer getCliente_client_id() {
-        return Cliente_client_id;
+    public Integer getClienteClientId() {
+        return clienteClientId;
     }
 
-    public void setCliente_client_id(Integer cliente_client_id) {
-        Cliente_client_id = cliente_client_id;
+    public void setClienteClientId(Integer clienteClientId) {
+        this.clienteClientId = clienteClientId;
     }
 }

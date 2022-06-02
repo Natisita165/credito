@@ -1,0 +1,28 @@
+### Buscar cuotas restantes
+GET http://localhost:8090/credits/get?clienteClientId=1
+### Buscar cuotas a pagar
+GET http://localhost:8090/credits/get/CuotaP?clienteClientId=1
+
+### Buscar cuotas restantes getway
+GET http://localhost:8282/mscredito/credits/get?clienteClientId=1
+
+###Crear nuevo crédito
+
+POST http://localhost:8090/credits/post
+Accept: application/json
+Content-type: application/json
+
+{
+  "garante": "Maria",
+  "ingreso": 500,
+  "cantidadT": 150.1,
+  "cantidadF": 20.02,
+  "cuotas": 10,
+  "cuotasR": 2,
+  "cuotasP": 8,
+  "fechaC": "2022-05-27",
+  "inmueble": "casa",
+  "clienteClientId": 1
+
+}
+

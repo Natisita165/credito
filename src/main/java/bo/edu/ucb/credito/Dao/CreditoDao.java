@@ -22,8 +22,8 @@ public class CreditoDao {
 
     public Credito getCuotasR (Integer Cliente_client_id){
         System.out.println("entro a cuotas");
-        String sql = "SELECT cantidadT, cantidadF, cuotas, cuotasR, Cliente_client_id" +
-                " FROM Credito WHERE Cliente_client_id= (?)";
+        String sql = "SELECT cantidadT, cantidadF, cuotas, cuotasR, client_id" +
+                " FROM Credito WHERE client_id= (?)";
         Credito cre= new Credito();
         try (
                 Connection conn = dataSource.getConnection();
@@ -37,7 +37,7 @@ public class CreditoDao {
                 cre.setCantidadF(rs.getDouble("cantidadF"));
                 cre.setCuotas(rs.getInt("cuotas"));
                 cre.setCuotasR(rs.getInt("cuotasR"));
-                cre.setCliente_client_id(rs.getInt("Cliente_client_id"));
+                cre.setClienteClientId(rs.getInt("client_id"));
             }
             rs.close();
 
@@ -50,8 +50,8 @@ public class CreditoDao {
 
     public Credito getCuotasP (Integer Cliente_client_id){
         System.out.println("entro a cuotas");
-        String sql = "SELECT cantidadT, cuotas, cuotasP, Cliente_client_id" +
-                " FROM Credito WHERE Cliente_client_id= (?)";
+        String sql = "SELECT cantidadT, cuotas, cuotasP, client_id" +
+                " FROM Credito WHERE client_id= (?)";
         Credito cre= new Credito();
         try (
                 Connection conn = dataSource.getConnection();
@@ -64,7 +64,7 @@ public class CreditoDao {
                 cre.setCantidadT(rs.getDouble("cantidadT"));
                 cre.setCuotas(rs.getInt("cuotas"));
                 cre.setCuotasP(rs.getInt("cuotasP"));
-                cre.setCliente_client_id(rs.getInt("Cliente_client_id"));
+                cre.setClienteClientId(rs.getInt("client_id"));
             }
             rs.close();
 
@@ -74,8 +74,37 @@ public class CreditoDao {
         return cre;
     }
 
+    public Credito crearNuevo(Credito credito){
+        System.out.println("entro a cuotas");
+        String sql = "INSERT INTO credito(garante, ingreso, cantidadT, cantidadF, cuotas, cuotasR, cuotasP, fechaC, inmueble, client_id) VALUES ((?),(?),(?),(?),(?),(?),(?),(?),(?),(?))";
+        Credito cre= new Credito();
+        try (
+                Connection conn = dataSource.getConnection();
+                PreparedStatement param = conn.prepareStatement(sql);
+        ) {
+            System.out.println("ENTRE 2");
+            //param.setString(1, client.getClientUsername());
+            //param.setString(2,cifPwd);
+            param.setString(1, credito.getGarante());
+            param.setInt(2, credito.getIngreso());
+            param.setDouble(3, credito.getCantidadT());
+            param.setDouble(4, credito.getCantidadF());
+            param.setInt(5, credito.getCuotas());
+            param.setInt(6, credito.getCuotasR());
+            param.setInt(7, credito.getCuotasP());
+            param.setDate(8, credito.getFechaC());
+            param.setString(9, credito.getInmueble());
+            System.out.println(credito.getClienteClientId());
+            param.setInt(10, credito.getClienteClientId());
+            System.out.println(sql);
+            param.executeUpdate();
 
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
 
+        return cre;
+    }
 
 
 
