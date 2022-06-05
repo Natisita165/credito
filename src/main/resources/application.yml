@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/banco
+    url: jdbc:postgresql://localhost:5432/atm
     username: postgres
-    password: n
+    password: postgres
   application:
     name: msCredito
 server:
