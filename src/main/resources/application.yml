@@ -1,12 +1,12 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/atm
+    url: ${URL_BD:jdbc:postgresql://localhost:5432/atm}
     username: postgres
     password: postgres
   application:
-    name: msCredito
+    name: credito
 server:
-  port: 8090
+  port: ${SERVER_PORT:8090}
 eureka:
   instance:
     prefer-ip-address: true
@@ -16,4 +16,4 @@ eureka:
     fetch-registry: true
     register-with-eureka: true
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
